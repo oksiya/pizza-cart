@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Pizza Cart</title>
+    <script src="https://unpkg.com/alpinejs" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-700 p-4">
+    <div x-data="pizzaCart()">
+        <h1 class="text-3xl font-bold mb-4 text-center text-white">Perfect Pizza</h1>
+        
+        <div class="pizza-items gap-4 flex mb-4">
+            <!-- Pizza Items -->
+            <div class="bg-yellow-200 p-4 shadow rounded">
+                <img src="pizza.png" alt="Description of the image" class="w-32 h-32 object-cover rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold">Small Pizza</h2>
+                <p>R31.99</p>
+                <p class="bg-gray-300 p-4 my-6 rounded">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button @click="addPizza('small')" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Order</button>
+                <button @click="removePizza('small')" class="bg-red-500 text-white px-4 py-2 mt-2 rounded">-</button>
+            </div>
+            <div class="bg-cyan-200 p-4 shadow rounded">
+                <img src="pizza.png" alt="Description of the image" class="w-48 h-48 object-cover rounded-lg shadow-lg">
+                <h2 class="text-xl font-bold">Medium Pizza</h2>
+                <p>R58.99</p>
+                <p class="bg-gray-300 p-4 my-6 rounded">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button @click="addPizza('medium')" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Order</button>
+                <button @click="removePizza('medium')" class="bg-red-500 text-white px-4 py-2 mt-2 rounded">-</button>
+            </div>
+            <div class="bg-green-200 p-4 shadow rounded">
+                <img src="pizza.png" alt="Description of the image" class="w-64 h-64 object-cover rounded-lg shadow-lg">
+
+                <h2 class="text-xl font-bold">Large Pizza</h2>
+                <p>R87.99</p>
+                <p class="bg-gray-300 p-4 my-6 rounded">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button @click="addPizza('large')" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Order</button>
+                <button @click="removePizza('large')" class="bg-red-500 text-white px-4 py-2 mt-2 rounded">-</button>
+            </div>
+        </div>
+
+        <!-- Cart -->
+        <div class="bg-gray-300 p-4 shadow rounded mb-4 border-2 border-white">
+            <h2 class="text-xl font-bold mb-4">Shopping Cart</h2>
+            <div x-show="cart.length > 0">
+                <template x-for="(item, index) in cart" :key="index">
+                    <div class="flex justify-between mb-2">
+                        <span x-text="item.size + ' Pizza'"></span>
+                        <span>x <span x-text="item.quantity"></span></span>
+                        <span>R<span x-text="item.totalPrice.toFixed(2)"></span></span>
+                        <button @click="removePizza(index)" class="bg-red-500 text-white px-2 py-1 rounded">Remove</button>
+                    </div>
+                </template>
+                <div class=" font-bold border-t-8 pt-2 mt-2 text-xl">
+                    <p>Total Cost: R<span x-text="totalCost.toFixed(2)"></span></p>
+                </div>
+                <button @click="checkout()" class="bg-blue-500 text-white px-4 py-2 mt-4 rounded" x-show="cart.length > 0">Check Out</button>
+            </div>
+            <div x-show="cart.length === 0" x-cloak>
+                <p>Your cart is empty.</p>
+            </div>
+        </div>
+
+        <!-- Checkout Modal -->
+        <div x-show="showCheckout" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+            <div class="bg-white p-4 shadow rounded">
+                <h2 class="text-xl font-bold mb-4">Enter Payment Amount</h2>
+                <input type="number" min="0" step="0.01" x-model="paymentAmount" class="border p-2 mb-4 w-full" placeholder="Enter amount">
+                <div class="items-center">
+                    <button @click="confirmPayment()" class="bg-green-500 text-white px-4 py-2 rounded">Confirm</button>
+                    <button @click="showCheckout = false" class="bg-red-500 text-white px-4 py-2 rounded ml-2">Cancel</button>
+                </div>
+                <p x-text="checkoutMessage" class="mt-4"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Details -->
+    <div class="mt-8 flex flex-col items-center text-white">
+        <h2 class="text-xl font-bold">Contact Details</h2>
+        <p>help@lipsum.com | 022 141 2200</p>
+    </div>
+
+    <script src="pizzaCart.js"></script>
+</body>
+</html>
