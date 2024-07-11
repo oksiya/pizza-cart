@@ -11,7 +11,7 @@
 </head>
 <body class="bg-gray-700 p-4">
     <div x-data="pizzaCart()">
-        <h1 class="text-3xl font-bold mb-4 text-center text-white">Perfect Pizza</h1>
+        <h1 class="text-3xl font-bold mb-4 text-center text-white">Pizza Cart</h1>
         
         <div class="pizza-items gap-4 flex mb-4">
             <!-- Pizza Items -->
@@ -20,7 +20,7 @@
                 <h2 class="text-xl font-bold">Small Pizza</h2>
                 <p>R31.99</p>
                 <p class="bg-gray-300 p-4 my-6 rounded">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    A timeless classic with fresh mozzarella, tangy tomato sauce, and aromatic basil on a crispy crust.
                 </p>
                 <button @click="addPizza('small')" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Order</button>
                 <button @click="removePizza('small')" class="bg-red-500 text-white px-4 py-2 mt-2 rounded">-</button>
@@ -30,7 +30,7 @@
                 <h2 class="text-xl font-bold">Medium Pizza</h2>
                 <p>R58.99</p>
                 <p class="bg-gray-300 p-4 my-6 rounded">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Loaded with spicy pepperoni slices, melted mozzarella, and zesty tomato sauce on a golden-brown crust.
                 </p>
                 <button @click="addPizza('medium')" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Order</button>
                 <button @click="removePizza('medium')" class="bg-red-500 text-white px-4 py-2 mt-2 rounded">-</button>
@@ -41,7 +41,7 @@
                 <h2 class="text-xl font-bold">Large Pizza</h2>
                 <p>R87.99</p>
                 <p class="bg-gray-300 p-4 my-6 rounded">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    A vibrant mix of bell peppers, onions, mushrooms, olives, and tomatoes on a cheesy tomato base.
                 </p>
                 <button @click="addPizza('large')" class="bg-green-500 text-white px-4 py-2 mt-2 rounded">Order</button>
                 <button @click="removePizza('large')" class="bg-red-500 text-white px-4 py-2 mt-2 rounded">-</button>
